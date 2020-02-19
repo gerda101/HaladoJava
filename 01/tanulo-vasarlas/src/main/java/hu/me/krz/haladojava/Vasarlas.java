@@ -15,7 +15,7 @@ public class Vasarlas {
 		
 		int random;			
 		for (int i=0; (i<6 && tanuloList.size()!=0); i++) {
-			System.out.println((i+1)+" vásárlási kör:\n");
+			System.out.println("---- "+(i+1)+" vásárlási kör ----\n");
 			for (int j=0; j<tanuloList.size();j++) {
 				random = (int)(Math.random() * 3000 + 1500);
 				if (tanuloList.get(j).fogyasztas(random)==true) {
