@@ -36,4 +36,22 @@ public class Point {
 		return "(" + x + ", " + y + ", " + z + ")";
 	}
 
+	@Override
+	public int hashCode() {
+		int result = (int)(x^(x>>>32));
+		result = (int) (31 * result + (y^(y>>>32)));
+		result = (int) (31 * result + (z^(z>>>32)));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass()!=o.getClass()) return false;
+		
+		Point point = (Point) o;
+		if (x!= point.x) return false;
+		if (y!= point.y) return false;
+		return z == point.z;
+	}
 }
