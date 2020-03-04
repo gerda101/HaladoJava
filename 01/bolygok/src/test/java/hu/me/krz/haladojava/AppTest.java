@@ -4,9 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class AppTest
+public class AppTest 
 {
-	
     /*@Test
     void getName()
     {
@@ -28,6 +27,7 @@ public class AppTest
         assertTrue(a.getName().equals("teszt"));
     }
     
+
     @Test
     void observeTheSky()
     {
