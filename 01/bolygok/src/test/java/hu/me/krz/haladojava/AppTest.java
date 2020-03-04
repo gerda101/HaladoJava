@@ -1,16 +1,31 @@
 package hu.me.krz.haladojava;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-
-public class AppTest 
+public class AppTest
 {
+	
     @Test
-    public void PlanetTest()
+    void getName()
+    {
+    	String name = "Nem Tom";
+    	Astronomer a = new Astronomer(name);
+        assertThat(a.getName().equals("name"));
+    }
+    
+    @Test
+    void ShouldAnswerWithTrue()
+    {
+    	assertTrue(true);
+    }
+    
+    @Test
+    void PlanetTest()
     {
         Astronomer a = new Astronomer("teszt");
-        assertEquals("teszt", a.getName());
+        assertTrue(a.getName().equals("teszt"));
     }
+    
 }
