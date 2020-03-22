@@ -1,7 +1,8 @@
+package app;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
-import controllers.UserController;
 import data.User;
 import repositories.UserRepository;
 import validators.LengthValidator;
@@ -11,24 +12,23 @@ import validators.Validator;
 public class App {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub 
+		Logger logger = Logger.getLogger(App.class.toString());
 		UserRepository repository = new UserRepository();
-		System.out.println("Repository létrehozva.");
+		logger.info("Repository létrehozva.");
 		List<Validator> validators = new ArrayList<Validator>();
 		validators.add(new SpaceValidator());
 		validators.add(new LengthValidator());
-		System.out.println("Bemeneti feltételek megállapítva.");
-		UserController controller = new UserController();
-		System.out.println("Adatok bevitele:");
+		logger.info("Bemeneti feltételek megállapítva.");
+		logger.info("Adatok bevitele:");
 		repository.save(new User("Lacoka", "nkf56", true));
 		repository.save(new User("Bazsika", "GoZ56", true));
 		repository.save(new User("Ferike", "Gor56", true));
-		System.out.println("Adatok felvétele: ");
+		logger.info("Adatok felvétele: ");
 		for (User u : repository.findAll()) {
-			System.out.println(u.getName());
+			logger.info(u.getName());
 		}
-		System.out.println("Adatok felvéve.");
-		System.out.println("Lefutott!"); 
+		logger.info("Adatok felvéve.");
+		logger.info("Lefutott!"); 
 	}
 
 }

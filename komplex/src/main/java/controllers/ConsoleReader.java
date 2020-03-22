@@ -1,19 +1,19 @@
-package usercontrollerdemo.io;
+package controllers;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Date;
-import java.sql.Timestamp;
-import java.text.DateFormat;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.time.temporal.ChronoField;
+import java.util.logging.Logger;
+
+import app.App;
 
 public class ConsoleReader {
-	
+	static Logger logger = Logger.getLogger(App.class.toString());
 	
 	//will read and Integer value
 	public static int readInt() {
@@ -27,8 +27,7 @@ public class ConsoleReader {
 				number = Integer.valueOf(reader.readLine());
 				ok = true;
 			} catch (Exception e) {
-				// TODO: handle exception
-				System.out.println("Invalid input, input was not an Integer");
+				logger.info("Invalid input, input was not an Integer");
 			}
 		} while (!ok);
 		return number;
@@ -46,7 +45,7 @@ public class ConsoleReader {
 				number = readInt();
 				if(number <= ceiling && number >= floor)
 					ok = true;
-				else System.out.println("Invalid input, Integer was not in the required range");
+				else logger.info("Invalid input, Integer was not in the required range");
 				
 		} while (!ok);
 		return number;
@@ -54,6 +53,7 @@ public class ConsoleReader {
 	
 	//will read a line and return it as a String value
 	public static String readString() {
+		Logger logger = Logger.getLogger(App.class.toString());
 		InputStreamReader inputStream = new InputStreamReader(System.in);
 		BufferedReader reader = new BufferedReader(inputStream);
 		
@@ -61,8 +61,7 @@ public class ConsoleReader {
 		try {
 			returnValue = reader.readLine();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.warning("An exception occurred:"+ e);
 		}
 		return returnValue;
 	}
@@ -79,7 +78,7 @@ public class ConsoleReader {
 				ok = true;
 			}
 			else {
-				System.out.println("Input is longer than what is required");
+				logger.warning("Input is longer than what is required");
 			}
 				
 		} while (!ok);
@@ -98,7 +97,7 @@ public class ConsoleReader {
 				ok = true;
 			}
 			else {
-				System.out.println("Input is shorter than what is required");
+				logger.warning("Input is shorter than what is required");
 			}
 				
 		} while (!ok);
@@ -117,7 +116,7 @@ public class ConsoleReader {
 				ok = true;
 			}
 			else {
-				System.out.println("Input has to be between " + (minlength + 1) + " and " + (maxLength + 1) + "in length.");
+				logger.warning("Input has to be between " + (minlength + 1) + " and " + (maxLength + 1) + "in length.");
 			}
 				
 		} while (!ok);
@@ -125,13 +124,14 @@ public class ConsoleReader {
 		return returnValue;
 	}
 	
+	
 	//reads date in the yyyy.MM.dd format
 	public static Date readSQLDate() {
 		boolean ok = false;
 		Date ret = null;
 		do {
 			try {	
-				System.out.println("D·tum form·tum: yyyy.mm.dd\n");
+				logger.warning("D√°tum form√°tum: yyyy.mm.dd\n");
 				String toConvert = readString();
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
 				LocalDate date = LocalDate.parse(toConvert, formatter);
@@ -139,7 +139,7 @@ public class ConsoleReader {
 				ok = true;
 				
 			} catch(DateTimeParseException e) {
-				System.out.println("A beÌrt d·tum nem megfelelı form·tum˙!");
+				logger.info("A be√≠rt d√°tum nem megfelel≈ë form√°tum√∫!");
 			}
 		}while(!ok);
 		return ret;
